@@ -210,7 +210,18 @@ if st.button("Classify"):
     html_string, assignedClasses = classify(file,classarray)
     st.markdown(html_string, unsafe_allow_html=True)
 
-if st.button("Download Results File"):
-    # Convert results to a DataFrame
-    results_df = pd.DataFrame(assignedClasses)
-    results_df.to_csv('Classified_Image2.csv', index=False)
+results_df = pd.DataFrame(assignedClasses)
+@st.cache
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+csv = convert_df(results_df)
+st.download_button(label="Download data as CSV", data=csv, file_name='Classified_Image2.csv', mime='text/csv',)
+        # Convert results to a DataFrame
+   
+    #results_df.to_csv('Classified_Image2.csv', index=False)
+
+# if st.button("Download Results File"):
+#     # Convert results to a DataFrame
+#     results_df = pd.DataFrame(assignedClasses)
+#     results_df.to_csv('Classified_Image2.csv', index=False)
