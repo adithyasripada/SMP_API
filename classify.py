@@ -148,6 +148,7 @@ def classify(file,classarray):
         print(file)
         content = parse_csv(file)
         final = ""
+        outputClasses = []
         for x in content:
             print("Adi")
             print(x)
@@ -168,8 +169,8 @@ def classify(file,classarray):
             finalclass=query(tik_path, classarray)
             line = div1 + img + finalclass + div2 + '<br><br>' 
             final = final + line
-            assignedClasses.append({'Image_URL': x, 'GeneratedText': final_class})
-        return final
+            outputClasses.append({'Image_URL': x, 'GeneratedText': final_class})
+        return final, outputClasses
 
 def parse_csv(file):
     # Load data from CSV
@@ -205,7 +206,7 @@ def query(imageurl, givenarray):
     return curcat
 
 if st.button("Classify"):
-    html_string = classify(file,classarray)
+    html_string, assignedClasses = classify(file,classarray)
     st.markdown(html_string, unsafe_allow_html=True)
 
 if st.button("Download Results File"):
