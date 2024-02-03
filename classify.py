@@ -21,7 +21,7 @@ st.title("""Social Media Post Image Classifier""")
 
 file = st.file_uploader("Pick a file")
 classarray = ["Baseball","Basketball","Football","Tennis","Unspecified"]
-
+assignedClasses = []
 
 
 #app = Flask(__name__)
@@ -168,6 +168,7 @@ def classify(file,classarray):
             finalclass=query(tik_path, classarray)
             line = div1 + img + finalclass + div2 + '<br><br>' 
             final = final + line
+            assignedClasses.append({'Image_URL': x, 'GeneratedText': final_class})
         return final
 
 def parse_csv(file):
@@ -206,3 +207,8 @@ def query(imageurl, givenarray):
 if st.button("Classify"):
     html_string = classify(file,classarray)
     st.markdown(html_string, unsafe_allow_html=True)
+
+if st.button("Download Results File"):
+    # Convert results to a DataFrame
+    results_df = pd.DataFrame(assignedClasses)
+    results_df.to_csv('Classified_Image2.csv', index=False)
