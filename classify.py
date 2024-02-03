@@ -167,9 +167,10 @@ def classify(file,classarray):
             img = f'<img src="data:image/jpeg;base64,{base64_image}" width="200" height="200">'
             
             finalclass=query(tik_path, classarray)
+            outputClasses.append({'Image_URL': x, 'GeneratedText': final_class})
             line = div1 + img + finalclass + div2 + '<br><br>' 
             final = final + line
-            outputClasses.append({'Image_URL': x, 'GeneratedText': final_class})
+            
         return final, outputClasses
 
 def parse_csv(file):
