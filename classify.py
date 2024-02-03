@@ -204,5 +204,5 @@ def query(imageurl, givenarray):
     return curcat
 
 if st.button("Classify"):
-    output = classify(file,classarray)
-    print(output)
+    html_string = classify(file,classarray)
+    st.markdown(html_string, unsafe_allow_html=True)
