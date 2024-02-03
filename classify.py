@@ -21,7 +21,7 @@ st.title("""Social Media Post Image Classifier""")
 
 file = st.file_uploader("Pick a file")
 classarray = ["Baseball","Basketball","Football","Tennis","Unspecified"]
-assignedClasses = []
+#assignedClasses = []
 
 
 #app = Flask(__name__)
