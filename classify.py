@@ -22,8 +22,7 @@ st.write("""Social Media Post Image Classifier""")
 file = st.file_uploader("Pick a file")
 classarray = ["Baseball","Basketball","Football","Tennis","Unspecified"]
 
-if st.button("Classify"):
-    classify(file,classarray)
+
 
 #app = Flask(__name__)
 
@@ -203,3 +202,7 @@ def query(imageurl, givenarray):
         highest = (x['score'])
         curcat = x['label']
     return curcat
+
+if st.button("Classify"):
+    output = classify(file,classarray)
+    print(output)
