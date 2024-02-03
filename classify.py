@@ -22,9 +22,8 @@ st.write("""Social Media Post Image Classifier""")
 file = st.file_uploader("Pick a file")
 classarray = ["Baseball","Basketball","Football","Tennis","Unspecified"]
 
-st.button("Classify")
-
-
+if st.button("Classify"):
+    classify(file,classarray)
 
 #app = Flask(__name__)
 
