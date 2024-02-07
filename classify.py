@@ -16,8 +16,8 @@ from PIL import Image
 import urllib.request
 import streamlit as st
 import os
-import re
-import facebook_scraper as fs
+# import re
+# import facebook_scraper as fs
 
 st.title("""Social Media Post Image Classifier""")
 
