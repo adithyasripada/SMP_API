@@ -17,7 +17,7 @@ import urllib.request
 import streamlit as st
 import os
 
-st.title("""Social Media Post Image""")
+st.title("""Social Media Post Image Classifier""")
 
 file = st.file_uploader("Pick a file")
 classarray = ["Baseball","Basketball","Football","Tennis","Unspecified"]
