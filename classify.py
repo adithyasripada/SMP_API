@@ -16,6 +16,8 @@ from PIL import Image
 import urllib.request
 import streamlit as st
 import os
+import re
+import facebook_scraper as fs
 
 st.title("""Social Media Post Image Classifier""")
 
@@ -67,6 +69,15 @@ def preprocess_image(image_url):
     input_tensor = image
     return input_tensor
 
+def get_link_fb(url):
+    pattern = r'\d+'
+    numbers = re.findall(pattern, url)
+    if len(numbers) >= 2:
+        POST_ID = f"{numbers[0]}_{numbers[1]}"
+    gen = fs.get_posts(post_urls=[POST_ID], credentials={'leeroyjj86@gmail.com','PassCode123*'})
+    post = next(gen)
+    print(post)
+    return (post['image_lowquality'])
 
 
 def get_link_tik(givenurl):
