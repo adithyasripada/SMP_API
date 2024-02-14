@@ -55,39 +55,39 @@ def get_link_insta(url):
         r = requests.get(url+"media/?size=l", proxies={"https": 'http://7KrAOumff6uMdSrF:3UPw4vDCeBOstj7l_streaming-1@geo.iproyal.com:12321'})
     return r.url
 
-#Function to login to facebook
-def login_to_facebook():
-    #open the webpage
-    driver.get("http://www.facebook.com")
+# #Function to login to facebook
+# def login_to_facebook():
+#     #open the webpage
+#     driver.get("http://www.facebook.com")
 
-    #target username
-    username = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='email']")))
-    password = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='pass']")))
+#     #target username
+#     username = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='email']")))
+#     password = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='pass']")))
 
-    #enter username and password
-    username.clear()
-    username.send_keys("leeroyjj86@gmail.com")
-    password.clear()
-    password.send_keys("PassCode123*")
+#     #enter username and password
+#     username.clear()
+#     username.send_keys("leeroyjj86@gmail.com")
+#     password.clear()
+#     password.send_keys("PassCode123*")
 
-    #target the login button and click it
-    button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))).click()
+#     #target the login button and click it
+#     button = WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))).click()
 
-    #We are logged in!
+#     #We are logged in!
 
 
 #Function to get facebook link
-def get_link_fb  (url):
-  driver.get(url)
-  driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
-  time.sleep(5)
-  # imgResults = driver.find_elements(By.XPATH,"//img[@class='x5yr21d xu96u03 x10l6tqk x13vifvy x87ps6o xh8yej3']")
-  imgResults = driver.find_elements(By.XPATH,"//img[@class='x85a59c x193iq5w x4fas0m x19kjcj4']")
-  imgurl = []
-  for img in imgResults:
-      imgurl.append(img.get_attribute('src'))
-  print(imgurl[0])
-  return imgurl[0]
+# def get_link_fb  (url):
+#   driver.get(url)
+#   driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+#   time.sleep(5)
+#   # imgResults = driver.find_elements(By.XPATH,"//img[@class='x5yr21d xu96u03 x10l6tqk x13vifvy x87ps6o xh8yej3']")
+#   imgResults = driver.find_elements(By.XPATH,"//img[@class='x85a59c x193iq5w x4fas0m x19kjcj4']")
+#   imgurl = []
+#   for img in imgResults:
+#       imgurl.append(img.get_attribute('src'))
+#   print(imgurl[0])
+#   return imgurl[0]
 
 
 
