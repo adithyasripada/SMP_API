@@ -8,5 +8,7 @@ Clone repo
 
 Run the program locally with this command - 
 
-streamlit run c:/Users/HughT/Downloads/github-test/SMP_API/classify
+streamlit run c:/Users/HughT/Downloads/github-test/SMP_API/classify.py
+
+OR streamlit run classify.py
 
