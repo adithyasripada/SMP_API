@@ -45,41 +45,57 @@ def classify(file,classarray):
             if re.match(r"(?:https?:\/\/)?(?:www\.)?(?:tiktok\.com)\/.*", x):
                 locallygen = True
                 print("This is a TikTok link.")
-                path = get_link_tik(x)
-                img = preprocess_image(path)
-                img_buffer = BytesIO()
-                img.save(img_buffer, format="JPEG") 
-                img_buffer.seek(0)
-                image_data = img_buffer.read()
-                image = base64.b64encode(image_data).decode('utf-8')
+                try:
+                    path = get_link_tik(x)
+                    img = preprocess_image(path)
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format="JPEG") 
+                    img_buffer.seek(0)
+                    image_data = img_buffer.read()
+                    image = base64.b64encode(image_data).decode('utf-8')
+                except Exception as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue 
 
             elif re.match(r"(?:https?:\/\/)?(?:www\.)?(?:facebook\.com)\/.*", x):
                 locallygen = False
                 print("This is a Facebook link.")
-                path = get_link_fb(x)
-                print(requests.get(path).text)
-                if len(requests.get(path).text) < 100:
-                    path = None
-                else: image = path
+                try:
+                    path = get_link_fb(x)
+                    print(requests.get(path).text)
+                    if len(requests.get(path).text) < 100:
+                        path = None
+                    else: image = path
+                except Exception as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue        
             
             else:
                  print("This is a Instagram link.")
                  locallygen = True
-                 path = worker(x)
-                 image = gettobase64(path)
+                 try:
+                     path = worker(x)
+                     image = gettobase64(path)
+                except Exception as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue
 
             if path is not None:
-                print(path)
-                div1 = '<div style="display:flex font-size:20px">'
-                div2 = '</div>'
-                if not locallygen:
-                    img = f'<img src="{image}" width="200" height="200">'
-                else:
-                    img = f'<img src="data:image/jpeg;base64,{image}" width="200" height="200">'
-                finalclass=query(path, classarray)
-                outputClasses.append({'Image_URL': x, 'GeneratedText': finalclass})
-                line = div1 + img + finalclass + div2 + '<br><br>' 
-                final = final + line      
+                try:
+                    print(path)
+                    div1 = '<div style="display:flex font-size:20px">'
+                    div2 = '</div>'
+                    if not locallygen:
+                        img = f'<img src="{image}" width="200" height="200">'
+                    else:
+                        img = f'<img src="data:image/jpeg;base64,{image}" width="200" height="200">'
+                    finalclass=query(path, classarray)
+                    outputClasses.append({'Image_URL': x, 'GeneratedText': finalclass})
+                    line = div1 + img + finalclass + div2 + '<br><br>' 
+                    final = final + line  
+                except Exception as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue
         return final, outputClasses
 
 if st.button("Classify"):
