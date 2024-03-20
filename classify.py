@@ -76,9 +76,9 @@ def classify(file,classarray):
                  try:
                      path = worker(x)
                      image = gettobase64(path)
-                except Exception as err:
-                    print(f"Unexpected {err=}, {type(err)=}")
-                    continue
+                 except Exception as err:
+                     print(f"Unexpected {err=}, {type(err)=}")
+                     continue
 
             if path is not None:
                 try:
