@@ -71,14 +71,14 @@ def classify(file,classarray):
                     continue        
             
             else:
-                 print("This is a Instagram link.")
-                 locallygen = True
-                 try:
-                     path = worker(x)
-                     image = gettobase64(path)
-                 except Exception as err:
-                     print(f"Unexpected {err=}, {type(err)=}")
-                     continue
+                print("This is a Instagram link.")
+                locallygen = True
+                try:
+                    path = worker(x)
+                    image = gettobase64(path)
+                except Exception as err:
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue
 
             if path is not None:
                 try:
@@ -93,10 +93,10 @@ def classify(file,classarray):
                     outputClasses.append({'Image_URL': x, 'GeneratedText': finalclass})
                     line = div1 + img + finalclass + div2 + '<br><br>' 
                     final = final + line  
-                 except Exception as err:
+                except Exception as err:
                     print(f"Unexpected {err=}, {type(err)=}")
                     continue
-        return final, outputClasses
+    return final, outputClasses
 
 if st.button("Classify"):
     html_string, assignedClasses = classify(file,classarray)
