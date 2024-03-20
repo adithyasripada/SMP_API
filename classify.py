@@ -94,8 +94,8 @@ def classify(file,classarray):
                     line = div1 + img + finalclass + div2 + '<br><br>' 
                     final = final + line  
                  except Exception as err:
-                     print(f"Unexpected {err=}, {type(err)=}")
-                     continue
+                    print(f"Unexpected {err=}, {type(err)=}")
+                    continue
         return final, outputClasses
 
 if st.button("Classify"):
