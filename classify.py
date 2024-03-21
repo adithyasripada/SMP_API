@@ -25,7 +25,7 @@ from facebookgetter import get_link_fb
 st.title("""Social Media Post Image Classifier""")
 
 file = st.file_uploader("Pick a file")
-classarray = ["Male","Female","Both","Unspecified"]
+classarray = ["Male","Female","Unspecified"]
 assignedClasses = []
 
 def gettobase64(url):
